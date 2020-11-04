@@ -4,7 +4,7 @@
   "description": "YT clone in Node",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/zulc22/TheeTunnel/issues"
   },
-  "homepage": "https://github.com/zulc22/TheeTunnel#readme"
+  "homepage": "https://github.com/zulc22/TheeTunnel#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

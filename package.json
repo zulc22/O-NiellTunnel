@@ -1,0 +1,19 @@
+{
+  "name": "theetunnel",
+  "version": "1.0.0",
+  "description": "YT clone in Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zulc22/TheeTunnel.git"
+  },
+  "author": "zulc22",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/zulc22/TheeTunnel/issues"
+  },
+  "homepage": "https://github.com/zulc22/TheeTunnel#readme"
+}

@@ -1,0 +1,43 @@
+version: "3.2"
+
+services: 
+  api:
+    build:
+      context: .
+    image: onielltunnel_api
+    depends_on:
+      - sql
+    networks:
+      - backend
+    environment:
+      - MYSQL_HOST=sql
+      - MYSQL_USER=root
+      - MYSQL_PASS=root
+    volumes:
+      - ./dynamic:/dynamic/
+    ports:
+      - "80:80"
+    container_name: api
+  sql:
+    image: mysql
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=onielltunnel
+    container_name: sql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - sql
+    networks:
+      - backend
+    ports:
+      - "30002:80"
+    environment:
+      - PMA_HOST=SQL
+      - PMA_PORT=3306
+    container_name: phpmyadmin
+
+networks:
+  backend:

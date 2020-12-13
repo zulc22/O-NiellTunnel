@@ -4,7 +4,7 @@ services:
 
     api:
         build:
-        context: ./api
+            context: ./api
         depends_on:
             - sql
         networks:
@@ -29,6 +29,8 @@ services:
         volumes:
             - ./sqldata/:/var/lib/mysql
             - ./sqlinit/:/docker-entrypoint-initdb.d
+        security_opt:
+            - seccomp:unconfined
         container_name: sql
 
     phpmyadmin:

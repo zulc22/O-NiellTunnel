@@ -1,3 +1,5 @@
+![logo](static/logo.gif)
+
 this project is API-only. any webpages are mostly for testing.
 
 once the important stuff is done, we need to move on to writing the clientside.

@@ -1,0 +1,14 @@
+.barbg {
+    margin: 5px;
+    padding: 0;
+    width: 400px;
+    height: 20px;
+    background-color: darkgray;
+}
+.bar {
+    margin: 0;
+    padding: 0;
+    background-color: darkcyan;
+    color: white;
+    text-align: right;
+}

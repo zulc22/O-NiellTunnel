@@ -57,9 +57,9 @@ CREATE TABLE `users` (
   `internal_id` int NOT NULL,
   `username` varchar(255) NOT NULL,
   `displayname` varchar(255) NOT NULL,
-  `subs` int NOT NULL,
-  `totallikes` int NOT NULL,
-  `totalviews` int NOT NULL,
+  `subs` int NOT NULL DEFAULT 0,
+  `totallikes` int NOT NULL DEFAULT 0,
+  `totalviews` int NOT NULL DEFAULT 0,
   `joindate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

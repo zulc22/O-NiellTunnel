@@ -15,6 +15,7 @@ services:
             - MYSQL_PASS=root
         volumes:
             - ./dynamic:/dynamic/
+            - ./static:/static/
         ports:
             - "80:80"
         container_name: api

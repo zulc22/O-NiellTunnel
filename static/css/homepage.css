@@ -1,14 +1,19 @@
 .barbg {
-    margin: 5px;
     padding: 0;
     width: 400px;
     height: 20px;
     background-color: darkgray;
+    border: lightgray inset 3px;
 }
 .bar {
     margin: 0;
     padding: 0;
     background-color: darkcyan;
+    height: 20px;
     color: white;
     text-align: right;
+}
+red {
+    display: inline;
+    color: red;
 }

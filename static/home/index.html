@@ -6,15 +6,15 @@
     <b>hello world</b><br>
     
     <form action="/api/video" method="post" enctype="multipart/form-data" id="uform">
-        <input type="file" name="myfile"><br>
-        <input type="submit" value="Upload File to Server">
-    </form><br>
+        <input type="file" name="video">
+        <input type="submit" value="Upload">
+    </form>
 
     <div class="progressbar">
         <div class="barbg"><div class="bar"></div></div>
+        <div id="status"></div>
     </div>
-
-    <div id="status"></div>
+    
 </body>
 <script type="text/javascript" src="/static/js/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="/static/js/homepage.js"></script>

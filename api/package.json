@@ -4,7 +4,7 @@
   "description": "YT clone in Node",
   "main": "index.mjs",
   "scripts": {
-    "start": "node index.mjs"
+    "start": "node index.mjs --unhandled-rejections=strict"
   },
   "repository": {
     "type": "git",

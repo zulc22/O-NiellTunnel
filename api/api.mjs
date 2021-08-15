@@ -3,17 +3,43 @@ import queue from './queue.mjs';
 import * as fs from 'fs';
 import * as video from './video.mjs';
 
-const sql = mysql.createConnection({
-    host     : 'sql',
-    user     : 'root',
-    password : 'root',
-    database : 'onielltunnel'
-});
-sql.connect();
+var sql;
+var allowConnections = false;
+
+function trySqlConnect() {
+    sql = mysql.createConnection({
+        host     : 'sql',
+        user     : 'root',
+        password : 'root',
+        database : 'onielltunnel'
+    });
+    sql.connect(error => {
+        if (error) {
+            console.log(
+                "Error trying to connect to SQL. trying again in 1s.\n",
+                error
+            );
+            setTimeout(trySqlConnect, 1*1000);
+        } else {
+            allowConnections = true;
+            console.log("Connected to SQL!");
+        }
+    });
+}
+trySqlConnect();
 
 export default function (app) {
 
     app.post('/api/video/new', (req, res) => {
+
+        if (!allowConnections) {
+            res.status(503).end(
+                "<red>The server is still trying to connect to MySQL!</red><br>"+
+                "By the time you read and understand this text, the issue has probably been resolved.<br>"+
+                "Try again."
+            );
+            return;
+        }
 
         if (req.files === undefined || req.files.video === undefined) {
             res.status(400).end(
@@ -67,18 +93,31 @@ export default function (app) {
 
     app.get('/api/video/:id', (req, res) => {
 
+        if (!allowConnections) {
+            res.status(503).end();
+            return;
+        }
+
         sql.query(
-            'SELECT * FROM videos WHERE video_id=?', [id],
+            'SELECT * FROM videos WHERE video_id=?', [req.params.id],
             (error, results, fields) => {
-                if (error) throw error;
-                res.json(fields);
+                if (error) res.json(error);
+                else {
+                    if (results[0]!==undefined) res.json(results[0]);
+                    else res.status(400);
+                };
+                res.end();
             }
         );
-        res.end();
         
     });
 
     app.get('/api/video/:id/:format.:ext', (req, res) => {
+
+        if (!allowConnections) {
+            res.status(503).end();
+            return;
+        }
 
         var vidfn = `/dynamic/videos/${req.params.id},f${req.params.format}.${req.params.ext}`;
 

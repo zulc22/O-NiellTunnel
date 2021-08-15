@@ -1,27 +1,24 @@
 {
-  "name": "theetunnel",
+  "name": "onitun",
   "version": "1.0.0",
   "description": "YT clone in Node",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.mjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zulc22/TheeTunnel.git"
+    "url": "git+https://github.com/zulc22/O-NiellTunnel.git"
   },
   "author": "zulc22",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/zulc22/TheeTunnel/issues"
+    "url": "https://github.com/zulc22/O-NiellTunnel/issues"
   },
-  "homepage": "https://github.com/zulc22/TheeTunnel#readme",
+  "homepage": "https://github.com/zulc22/O-NiellTunnel#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
-    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1"
   }

@@ -4,7 +4,7 @@ var uploadform = $("#uform");
 var progressbar = $(".progressbar");
 var bar = $(".bar");
 var status = $('#status');
-var postto = "/api/video";
+var postto = "/api/video/new";
 
 progressbar.hide();
 
@@ -45,8 +45,8 @@ $("#uform").on('submit', (e) => {
             status.text('uploading...');
         },
         // when the form gets a non-200 code probably
-        error: () => {
-            status.text('it didnt work');
+        error: (xhr, status, resp) => {
+            status.html(`it didnt work<br>response: ${resp}`);
         },
         // when the form succeeds. resp is a string of what the server sent back 
         success: (resp) => {

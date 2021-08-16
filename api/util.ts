@@ -1,4 +1,4 @@
-export function promiseToWaitUntil(tfFunc) {
+export function promiseToWaitUntil(tfFunc): Promise<void> {
     return new Promise( resolve => {
 
         function check() {
@@ -12,7 +12,7 @@ export function promiseToWaitUntil(tfFunc) {
     });
 }
 
-export function randomInts(amount, start, end) {
+export function randomInts(amount: number, start: number, end: number): number[] {
     var outarray = [];
     for (var i=0; i<=amount; i++) {
         outarray.push( start + Math.floor(Math.random() * (end-start)) );
@@ -20,7 +20,7 @@ export function randomInts(amount, start, end) {
     return outarray;
 }
 
-export function randomChars(amount, chararray) {
+export function randomChars(amount: number, chararray: string | string[]): string[] {
     var outarray = [];
     for (var i=0; i<=amount; i++) {
         outarray.push( chararray[Math.floor(Math.random() * chararray.length)] );
@@ -28,7 +28,7 @@ export function randomChars(amount, chararray) {
     return outarray;
 }
 
-export function numArrayToString(array) {
+export function numArrayToString(array: number[]): string {
     var outstr = "";
     for (var n in array) {
         outstr += chr(array[n]);
@@ -36,10 +36,10 @@ export function numArrayToString(array) {
     return outstr;
 }
 
-export function asc(l) {
+export function asc(l: string): number {
     return l.charCodeAt(0);
 }
 
-export function chr(n) {
+export function chr(n: number): string {
     return String.fromCharCode(n);
 }

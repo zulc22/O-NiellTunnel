@@ -1,12 +1,12 @@
 import * as child_process from 'child_process';
 import * as fs from 'fs';
-import * as util from './util.mjs';
+import * as util from './util';
 
-export function videoExists() {
+export function videoExists(vid: string): boolean {
     return false;
 }
 
-export function genVideoID() {
+export function genVideoID(): string {
 
     var vid = util.randomChars(5,
         "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
@@ -20,7 +20,7 @@ export function genVideoID() {
 
 }
 
-export function checkVideoValid(fn) {
+export function checkVideoValid(fn: string): Promise<any[]> {
     return new Promise( resolve => {
         child_process.exec(
             `ffprobe -loglevel warning -show_streams "${fn}"`,
@@ -32,7 +32,7 @@ export function checkVideoValid(fn) {
     });
 }
 
-export async function processVid(fn, vid) {
+export async function processVid(fn, vid): Promise<boolean | string> {
 
     console.log("Processing video",vid);
 

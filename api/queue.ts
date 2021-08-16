@@ -1,15 +1,10 @@
-import * as util from './util.mjs';
+import * as util from './util';
 
 var funcQueue = {};
 var queueRunning = false;
 
-function genQueuedTaskID() {
+function genQueuedTaskID(): string {
 
-    // REFACTORREFACTOR:
-    // use util.randomChars() instead of util.numArrayToString(util.randomInts)
-    // for simplicity
-
-    //var tid = util.numArrayToString( util.randomInts(5, util.asc(' '), util.asc('~')) );
     var tid = util.randomChars(3,
 "!\"#$%&'()*+,-./0123456789:;<=>?@"+
 "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`"+
@@ -23,7 +18,7 @@ function genQueuedTaskID() {
 
 }
 
-function processQueue() {
+function processQueue(): void {
     if (queueRunning) return;
 
     queueRunning = true;
@@ -37,7 +32,7 @@ function processQueue() {
     queueRunning = false;
 }
 
-export default async function queue(f, willBeAwaited=false) {
+export default function queue(f, willBeAwaited=false): void | Promise<void> {
 
     var tid = genQueuedTaskID();
     funcQueue[tid] = f;

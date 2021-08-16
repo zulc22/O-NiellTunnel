@@ -8,8 +8,8 @@ var postto = "/api/video/new";
 
 progressbar.hide();
 
-function renderError() {
-    
+function msgBox() {
+    // TODO
 }
 
 // when you press submit
@@ -48,14 +48,14 @@ $("#uform").on('submit', (e) => {
             bar.width('0%');
             status.text('uploading...');
         },
-        // when the form gets a non-200 code probably
+        // when the form gets a non-200 code. resp is what the server sent back 
         error: (xhr, st, resp) => {
-            status.html(`it didnt work<br>response: ${resp}`);
+            status.html(`it didnt work<br>response: ${JSON.stringify(resp)}`);
         },
-        // when the form succeeds. resp is a string of what the server sent back 
+        // when the form succeeds. resp is what the server sent back 
         success: (resp) => {
             uploadform[0].reset();
-            status.html(`it worked<br>response: ${resp}`);
+            status.html(`it worked<br>response: ${JSON.stringify(resp)}`);
         }
     });
 });

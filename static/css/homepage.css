@@ -3,7 +3,7 @@
     width: 400px;
     height: 20px;
     background-color: darkgray;
-    border: lightgray inset 3px;
+    border: lightgray inset 1px;
 }
 .bar {
     margin: 0;

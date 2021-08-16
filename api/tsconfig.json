@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true
+    },
+    "files": [
+        "index.ts",
+        "api.ts",
+        "queue.ts",
+        "util.ts",
+        "video.ts"
+    ]
+}

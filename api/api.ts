@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+import mysql from 'mysql';
 import queue from './queue';
 import * as fs from 'fs';
 import * as video from './video';

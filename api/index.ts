@@ -1,11 +1,11 @@
-const express = require('express');
-const morgan = require('morgan');
-const fileUpload = require('express-fileupload');
+import express from 'express';
+import morgan from 'morgan';
+import fileUpload from 'express-fileupload';
+
+import api from './api';
 
 const app = express();
 const port = 80;
-
-import api from './api';
 
 app.use( '/static', express.static('/static') );
 

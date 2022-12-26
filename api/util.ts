@@ -43,3 +43,7 @@ export function asc(l: string): number {
 export function chr(n: number): string {
     return String.fromCharCode(n);
 }
+
+export function arrayNegIndex(a: any[], ni: number) {
+    return a[a.length+ni];
+}

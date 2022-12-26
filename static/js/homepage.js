@@ -32,12 +32,10 @@ $("#uform").on('submit', (e) => {
             }, false);
             return xhr;
         },
-        // if you can't understand this part you shouldn't be reading this
         type: 'POST',
         url: postto,
-        // afaik this only works for POST. don't care enough to check.
         data: new FormData(uploadform[0]),
-        // no idea why this shit is 'false'.
+        // no idea why this needs to be 'false'.
         contentType: false,
         cache: false,
         processData: false,

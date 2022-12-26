@@ -32,13 +32,12 @@ export function checkVideoValid(fn: string): Promise<any[]> {
     });
 }
 
-export async function processVid(fn, vid): Promise<boolean | string> {
+export async function processVid(fn: string, vid: string, cb: (completed_format: string) => void): Promise<boolean | string> {
 
     console.log("Processing video",vid);
 
     // Get extension of file
-    var fnext = fn.split('.');
-    fnext = fnext[fnext.length-1];
+    var fnext = util.arrayNegIndex(fn.split('.'), -1)
 
     var nfn = `/dynamic/temp/${vid},of.${fnext}`;
     fs.renameSync(fn, nfn);
@@ -58,6 +57,8 @@ export async function processVid(fn, vid): Promise<boolean | string> {
             
             console.log("(FORMAT 0 - H264) Successfully processed",vid);
             console.log(so,se);
+
+            cb("0");
             
             fs.renameSync(`/dynamic/temp/${vid},f0.mp4`, `/dynamic/videos/${vid},f0.mp4`);
             fs.unlinkSync(fn);

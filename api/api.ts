@@ -16,8 +16,7 @@ function trySqlConnect(): void {
     sql.connect(error => {
         if (error) {
             console.log(
-                "Error trying to connect to SQL. trying again in 1s.\n",
-                error
+                `Error trying to connect to SQL. trying again in 1s.\n${error}`
             );
             setTimeout(trySqlConnect, 1*1000);
         } else {

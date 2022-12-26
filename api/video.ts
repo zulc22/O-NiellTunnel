@@ -40,11 +40,11 @@ export async function processVid(fn: string, vid: string, cb: (completed_format:
     var fnext = util.arrayNegIndex(fn.split('.'), -1)
 
     var nfn = `/dynamic/temp/${vid},of.${fnext}`;
-    fs.renameSync(fn, nfn);
+    await fs.promises.rename(fn, nfn);
     fn = nfn;
 
     console.log("Starting processing of",vid,"; FORMAT 0 - H264");
-    return await new Promise( resolve => child_process.exec(
+    return new Promise( resolve => child_process.exec(
         `ffmpeg -hide_banner -loglevel warning -i "${fn}" -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v h264 -crf 25 -c:a aac -pix_fmt yuv420p "/dynamic/temp/${vid},f0.mp4"`,
         (e,so,se) => {
             if (e) {
@@ -60,10 +60,12 @@ export async function processVid(fn: string, vid: string, cb: (completed_format:
 
             cb("0");
             
-            fs.renameSync(`/dynamic/temp/${vid},f0.mp4`, `/dynamic/videos/${vid},f0.mp4`);
-            fs.unlinkSync(fn);
+            fs.promises.rename(`/dynamic/temp/${vid},f0.mp4`, `/dynamic/videos/${vid},f0.mp4`).then(()=>{
+                fs.promises.unlink(fn).then(()=>{
+                    resolve(`/dynamic/videos/${vid},f0.mp4`);
+                });
+            });
             
-            resolve(`/dynamic/videos/${vid},f0.mp4`);
         }
     ));
     

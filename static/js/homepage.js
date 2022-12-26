@@ -19,8 +19,8 @@ $("#uform").on('submit', (e) => {
     e.stopImmediatePropagation();
     e.preventDefault();
     
-    // good luck understanding this shit. it's mostly copy pasted.
     $.ajax({
+        // progress bar code
         xhr: () => {
             var xhr = new window.XMLHttpRequest();
             xhr.upload.addEventListener("progress", (evt) => {
@@ -32,10 +32,11 @@ $("#uform").on('submit', (e) => {
             }, false);
             return xhr;
         },
+        // important params
         type: 'POST',
         url: postto,
         data: new FormData(uploadform[0]),
-        // no idea why this needs to be 'false'.
+        //
         contentType: false,
         cache: false,
         processData: false,
@@ -44,16 +45,16 @@ $("#uform").on('submit', (e) => {
             uploadform.hide();
             progressbar.show();
             bar.width('0%');
-            status.text('uploading...');
+            status.text('Uploading...');
         },
         // when the form gets a non-200 code. resp is what the server sent back 
         error: (xhr, st, resp) => {
-            status.html(`it didnt work<br>response: ${JSON.stringify(resp)}`);
+            status.text(resp.status);
         },
         // when the form succeeds. resp is what the server sent back 
         success: (resp) => {
             uploadform[0].reset();
-            status.html(`it worked<br>response: ${JSON.stringify(resp)}`);
+            location.href = `/api/video/${resp.id}`;
         }
     });
 });
